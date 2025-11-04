@@ -1,0 +1,118 @@
+.end-page {
+  background-color: #333333;
+}
+.elements-row {
+  padding: 1.5rem 1.5rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+.elements-row li {
+  list-style-type: none;
+  color: rgb(102, 99, 99);
+  margin-bottom: 0.5rem;
+}
+.secciones-finales {
+  flex-grow: 1;
+  min-width: 230px;
+  max-height: 360px;
+}
+.elements-row li a {
+  color: #888888;
+  text-decoration: none;
+  font-size: 14px;
+}
+.Title-end {
+  color: white !important;
+}
+.desarrollo {
+  font-weight: 300;
+  text-align: justify;
+}
+.flex-final {
+  margin-top: 1rem;
+  display: flex !important;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 2rem;
+}
+.texto-final {
+  text-align: center;
+  min-width: 240px;
+}
+.logo-astro {
+  max-width: 300px;
+}
+.logo-acreditacion {
+  max-width: 300px;
+}
+.contacto {
+  margin: 1px;
+  font-size: 14px;
+  color: white;
+}
+.btn-small {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.8rem; /* Adjust the font size to make the button smaller */
+  margin-bottom: 0.5rem;
+  width: fit-content;
+}
+hr {
+  background-color: white !important;
+  border: 0;
+  height: 2px;
+  margin: 20px;
+  text-align: center;
+}
+@media (width < 1023px) {
+  .flex-final {
+    flex-direction: column;
+  }
+}
+@media (width < 427px) {
+  .Titulo {
+    text-align: center;
+  }
+  .subtitulo {
+    text-align: justify;
+    font-size: calc(5px + 2vw);
+    margin-top: 0.5rem;
+  }
+  .Titulo-indoA {
+    font-size: calc(20px + 4vw) !important;
+  }
+  .desarrollo {
+    font-size: calc(10px + 1vw);
+  }
+  .logo-astro {
+    width: 100%; /* Make the image width match the container width */
+    height: auto; /* Let the image height adjust proportionally */
+    object-fit: cover;
+  }
+  .logo-acreditacion {
+    width: 100%; /* Make the image width match the container width */
+    height: auto; /* Let the image height adjust proportionally */
+    object-fit: cover;
+  }
+}
+
+.creditos {
+  background-color: #061651;
+}
+.copyright {
+  padding: 1rem 1rem;
+  color: #888888;
+  font-size: 14px;
+  font-weight: 300;
+  margin: 0;
+}
+
+.footer-text {
+  color: rgb(206, 206, 206) !important;
+  transition: color 0.2s ease;
+}
+.footer-text:hover {
+  color: aquamarine !important;
+}

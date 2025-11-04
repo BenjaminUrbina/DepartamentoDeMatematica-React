@@ -1,0 +1,71 @@
+:root {
+  --brand: #0d6efd; /* primario Bootstrap */
+  --brand-600: #0b5ed7;
+  --surface: #ffffff;
+  --muted: #6c757d;
+  --bg-from: #f7f9fc;
+  --bg-to: #eef3f9;
+  --radius: 1.25rem;
+  --shadow: 0 0px 30px rgba(13, 109, 253, 0.1);
+}
+.title {
+  font-weight: 600;
+  color: #061651;
+  margin: 0;
+  text-align: center;
+}
+.title-divider {
+  width: 20%;
+  height: 4px;
+  background-color: #0d6efd !important;
+  border: 0;
+  opacity: 1;
+  margin: 1rem 15px;
+}
+.page-title {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+.title-divider {
+  height: 3px;
+  background: linear-gradient(90deg, var(--brand), var(--brand-600));
+  border: 0;
+  opacity: 1;
+}
+
+/* Tarjetas */
+.info-card {
+  border: 0;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  background: var(--surface);
+}
+.info-card .card-header {
+  background: linear-gradient(
+    90deg,
+    rgba(13, 110, 253, 0.08),
+    rgba(13, 110, 253, 0.02)
+  );
+  border-bottom: 0;
+  padding: 1.25rem 1.25rem;
+}
+.info-card .card-header .bi {
+  font-size: 1.5rem;
+}
+.info-card .list-group-item {
+  border: 0;
+  padding: 0.75rem 0;
+}
+.info-card .list-group-item + .list-group-item {
+  border-top: 1px solid rgba(0, 0, 0, 0.233);
+}
+.info-card .label {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* CTA */
+.contact-actions .btn {
+  border-radius: 0.8rem;
+}

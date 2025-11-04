@@ -1,0 +1,15 @@
+#noticias .card{
+  display:flex; flex-direction:column; height:100%;
+  border-radius:10px; overflow:hidden;
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+#noticias .card:hover{ transform:translateY(-4px); box-shadow:0 6px 16px rgba(0,0,0,.15); }
+#noticias .card-img-top{ height:200px; object-fit:cover; }
+#noticias .card-body{ flex:1; display:flex; flex-direction:column; }
+#noticias .card-title{ font-weight:600; margin-bottom:.5rem; }
+#noticias .card-text{ flex-grow:1; font-size:.9rem; color:#444; }
+#noticias .stretched-link{ margin-top:auto; font-weight:500; text-decoration:none; }
+#noticias .stretched-link:hover{ text-decoration:underline; }
+.border-dashed {
+  border: 2px dashed #d1d5db !important;
+}
