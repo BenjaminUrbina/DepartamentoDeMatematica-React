@@ -25,12 +25,10 @@ export default function Home() {
               </li>
             </ul>
 
-            {/* Antes: <a href="contacto.html" ...> */}
             <Link to="/contacto" className="btn btn-primary">
               Contactar
             </Link>
 
-            {/* Enlace interno a sección noticias */}
             <a href="#noticias" className="btn btn-outline-primary ms-2">
               Ver noticias
             </a>
@@ -46,20 +44,17 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== NOTICIAS (lista simple) ===== */}
       <section className="bg-light py-5" id="noticias">
         <div className="container">
           <div className="d-flex align-items-center justify-content-between mb-3">
             <h2 className="section-title m-0">Noticias Recientes</h2>
 
-            {/* Antes era un <button><a ...>Ver todas</a></button> */}
             <Link to="/noticias" className="btn btn-primary">
               Ver todas
             </Link>
           </div>
 
           <div className="row g-4 row-cols-1 row-cols-md-2 row-cols-lg-3">
-            {/* Noticia 1 */}
             <div className="col">
               <article className="card h-100 shadow-sm">
                 <img
@@ -86,7 +81,6 @@ export default function Home() {
               </article>
             </div>
 
-            {/* Noticia 2 */}
             <div className="col">
               <article className="card h-100 shadow-sm">
                 <img
@@ -113,7 +107,6 @@ export default function Home() {
               </article>
             </div>
 
-            {/* Placeholder elegante cuando hay poca info */}
             <div className="col d-none d-lg-block">
               <article className="card h-100 border-dashed text-center p-4">
                 <div className="my-3">
@@ -129,7 +122,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== PRÓXIMOS EVENTOS (vacío lindo) ===== */}
       <section className="bg-light py-5" id="eventos">
         <div className="container">
           <h2 className="section-title mb-3">Próximos eventos</h2>

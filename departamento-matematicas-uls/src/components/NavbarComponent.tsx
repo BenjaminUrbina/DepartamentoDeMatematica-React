@@ -5,7 +5,7 @@ import Navbar from "react-bootstrap/Navbar";
 
 const NavbarComponent = () => {
   return (
-    <Navbar className="navbar navbar-expand-lg shadow p-3 bg-body-tertiary rounded">
+    <Navbar expand="lg" className="shadow p-3 bg-body-tertiary rounded">
       <Container>
         <Link className="navbar-brand" to="/">
           <img
@@ -16,20 +16,10 @@ const NavbarComponent = () => {
           />
         </Link>
 
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNavAltMarkup"
-          aria-controls="navbarNavAltMarkup"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon" />
-        </button>
+        <Navbar.Toggle aria-controls="navbarNavAltMarkup" />
 
-        <div
-          className="collapse navbar-collapse justify-content-end"
+        <Navbar.Collapse
+          className="justify-content-end"
           id="navbarNavAltMarkup"
         >
           <div className="navbar-nav">
@@ -76,8 +66,11 @@ const NavbarComponent = () => {
             <Nav.Link as={Link} to="/sobre-nosotros">
               Sobre nosotros
             </Nav.Link>
+            <Nav.Link as={Link} to="/login">
+              Login
+            </Nav.Link>
           </div>
-        </div>
+        </Navbar.Collapse>
       </Container>
     </Navbar>
   );

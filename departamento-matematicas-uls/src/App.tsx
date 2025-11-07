@@ -5,8 +5,8 @@ import Contacto from "./pages/Contacto";
 import Docentes from "./pages/Docentes";
 import Noticias from "./pages/Noticias";
 import Publicaciones from "./pages/Publicaciones";
-import "./App.css";
 import Layoutsmain from "./layouts/Layoutsmain.tsx";
+import Login from "./pages/Login.tsx";
 
 function App() {
   return (
@@ -21,6 +21,7 @@ function App() {
           <Route path="noticias" element={<Noticias />} />
           <Route path="publicaciones" element={<Publicaciones />} />
         </Route>
+        <Route path="login" element={<Login />} />
       </Routes>
     </>
   );
