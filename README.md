@@ -23,3 +23,10 @@ entrega para poder utilizarlo en proyectos pequeños como este.
 ## ¿El proyecto cuenta con variables de entorno?
 
 Actualmente cuenta con las variables de entorno necesarias para poder conectarse a supabase, pero por el momento estan siendo integradas.
+- VITE_SUPABASE_URL
+- VITE_SUPABASE_ANON_KEY
+Estas variables te las da la misma supabase en caso de que quieras conectarte a tu propia base de datos.
+
+## Tablas creadas
+Actualmente estamos usando la tabla que tiene por defecto que tiene supabase, la cual puedes ver [aqui](https://supabase.com/docs/guides/auth/users).
+La tabla de las noticas se llama posts, las cuales tiene las siguientes elementos:
