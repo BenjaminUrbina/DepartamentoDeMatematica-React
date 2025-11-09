@@ -5,8 +5,8 @@ import Navbar from "react-bootstrap/Navbar";
 
 const NavbarComponent = () => {
   return (
-    <Navbar expand="lg" className="shadow p-3 bg-body-tertiary rounded">
-      <Container>
+    <Navbar expand="lg" className="shadow bg-body-tertiary rounded">
+      <Container fluid>
         <Link className="navbar-brand" to="/">
           <img
             src="/images/icon-uls.png"

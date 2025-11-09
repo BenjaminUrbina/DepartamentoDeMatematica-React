@@ -7,7 +7,6 @@ const Contacto = () => {
         <div className="row align-items-center g-4">
           <div className="col-12 col-lg-8">
             <h1 className="page-title display-5 mb-2">Contacto</h1>
-            <hr className="title-divider" />
             <p className="lead mb-3 text-secondary">
               Encuentra la información de contacto del Departamento de
               Matemáticas y del programa de Magíster en Matemáticas de la

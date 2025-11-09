@@ -1,118 +1,128 @@
-.end-page {
-  background-color: #333333;
+.footer {
+  background-color: #424242;
+  color: #d8d8d8;
 }
-.elements-row {
-  padding: 1.5rem 1.5rem;
+
+.footer__top {
+  padding: 0.3rem 1.5rem 2rem;
+}
+
+.footer__columns {
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
-  gap: 0.6rem;
+  gap: 1.5rem;
 }
-.elements-row li {
-  list-style-type: none;
-  color: rgb(102, 99, 99);
-  margin-bottom: 0.5rem;
+
+.footer__column {
+  flex: 1 1 220px;
+  min-width: 200px;
 }
-.secciones-finales {
-  flex-grow: 1;
-  min-width: 230px;
-  max-height: 360px;
+
+.footer__title {
+  margin-bottom: 0.75rem;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #ffffff;
 }
-.elements-row li a {
-  color: #888888;
+
+.footer__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.footer__link {
+  color: inherit;
+  font-size: 0.9rem;
   text-decoration: none;
-  font-size: 14px;
+  transition: color 0.2s ease;
 }
-.Title-end {
-  color: white !important;
+
+.footer__link:hover {
+  color: #7fffd4;
 }
-.desarrollo {
-  font-weight: 300;
-  text-align: justify;
+
+.footer__divider {
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.2);
+  margin: 2rem 0;
 }
-.flex-final {
-  margin-top: 1rem;
-  display: flex !important;
+
+.footer__contact {
+  display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  padding-bottom: 2rem;
+  gap: 1.5rem;
 }
-.texto-final {
+
+.footer__brand {
   text-align: center;
-  min-width: 240px;
 }
-.logo-astro {
-  max-width: 300px;
+
+.footer__brand-image {
+  max-width: 220px;
+  width: 100%;
+  height: auto;
 }
-.logo-acreditacion {
-  max-width: 300px;
+.footer__brand-image-cna {
+  max-width: 350px;
+  width: 100%;
+  height: auto;
 }
-.contacto {
-  margin: 1px;
-  font-size: 14px;
-  color: white;
+
+.footer__contact-details {
+  text-align: center;
+  min-width: 220px;
 }
-.btn-small {
-  padding: 0.25rem 0.5rem;
-  font-size: 0.8rem; /* Adjust the font size to make the button smaller */
+
+.footer__contact-title {
   margin-bottom: 0.5rem;
-  width: fit-content;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #ffffff;
 }
-hr {
-  background-color: white !important;
-  border: 0;
-  height: 2px;
-  margin: 20px;
+
+.footer__cta {
+  margin-bottom: 0.75rem;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+}
+
+.footer__contact-text {
+  margin: 0.1rem 0;
+  font-size: 0.9rem;
+}
+
+.footer__credits {
+  background-color: #061651;
+  padding: 1rem;
   text-align: center;
 }
-@media (width < 1023px) {
-  .flex-final {
+
+.footer__credits-text {
+  margin: 0;
+  color: #b6b6b6;
+  font-size: 0.9rem;
+  font-weight: 300;
+}
+
+@media (max-width: 992px) {
+  .footer__columns {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .footer__top {
+    padding: 0.5rem 1rem 1.5rem;
+  }
+
+  .footer__contact {
     flex-direction: column;
   }
-}
-@media (width < 427px) {
-  .Titulo {
-    text-align: center;
-  }
-  .subtitulo {
-    text-align: justify;
-    font-size: calc(5px + 2vw);
-    margin-top: 0.5rem;
-  }
-  .Titulo-indoA {
-    font-size: calc(20px + 4vw) !important;
-  }
-  .desarrollo {
-    font-size: calc(10px + 1vw);
-  }
-  .logo-astro {
-    width: 100%; /* Make the image width match the container width */
-    height: auto; /* Let the image height adjust proportionally */
-    object-fit: cover;
-  }
-  .logo-acreditacion {
-    width: 100%; /* Make the image width match the container width */
-    height: auto; /* Let the image height adjust proportionally */
-    object-fit: cover;
-  }
-}
-
-.creditos {
-  background-color: #061651;
-}
-.copyright {
-  padding: 1rem 1rem;
-  color: #888888;
-  font-size: 14px;
-  font-weight: 300;
-  margin: 0;
-}
-
-.footer-text {
-  color: rgb(206, 206, 206) !important;
-  transition: color 0.2s ease;
-}
-.footer-text:hover {
-  color: aquamarine !important;
 }

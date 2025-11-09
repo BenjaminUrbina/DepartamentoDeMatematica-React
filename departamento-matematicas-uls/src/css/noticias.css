@@ -16,3 +16,11 @@
   text-align: center;
   color: #6c757d;
 }
+
+.cargando-noticias {
+  padding: 5rem 0;
+  text-align: center;
+  color: #6c757d;
+  font-size: 30px;
+  min-height: 300px;
+}

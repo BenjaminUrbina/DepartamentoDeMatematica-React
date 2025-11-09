@@ -1,4 +1,4 @@
-//import "./Docentes.css";
+import "../css/docentes.css";
 
 interface Docente {
   id: number;
