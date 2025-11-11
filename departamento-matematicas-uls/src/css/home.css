@@ -109,3 +109,13 @@
 .ver-mas {
   font-weight: 800;
 }
+.noticia-body {
+  line-height: 1.5; /* ~24px por línea */
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+
+  -webkit-line-clamp: 5;
+  line-clamp: 5;
+}

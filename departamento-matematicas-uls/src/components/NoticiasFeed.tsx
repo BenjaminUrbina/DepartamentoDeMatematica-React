@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import { supabaseCliente } from "../backend/supabaseCliente";
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
+
 import "../css/noticias.css";
 
 export type Noticia = {
@@ -8,6 +11,7 @@ export type Noticia = {
   body: string;
   status: string;
   fecha_publicacion: string;
+  url_img: string;
 };
 
 interface NoticiasFeedProps {
@@ -32,7 +36,7 @@ export default function NoticiasFeed(props: NoticiasFeedProps) {
     const fetchNoticias = async () => {
       let query = supabaseCliente
         .from("posts")
-        .select("id_post,title,body,status,fecha_publicacion")
+        .select("id_post,title,body,status,fecha_publicacion,url_img")
         .order("fecha_publicacion", { ascending: false });
 
       if (limit) {
@@ -68,24 +72,42 @@ export default function NoticiasFeed(props: NoticiasFeedProps) {
   }
 
   return (
-    <div className={`row g-4 ${className}`.trim()}>
+    <div className={`row g-4 ${className || ""}`.trim()}>
       {noticias.map((noticia) => (
         <div key={noticia.id_post} className="col-12 col-md-6 col-lg-4">
-          <article className="card noticia-card h-100 shadow-sm">
-            <div className="card-body d-flex flex-column">
-              <div className="mb-3"></div>
+          <article className="card h-100 shadow-sm">
+            {/* Imagen de la card */}
+            <img
+              src={noticia.url_img}
+              alt={noticia.title || "Noticia"}
+              className="card-img-top"
+              onError={(e) => {
+                e.currentTarget.src =
+                  "https://via.placeholder.com/800x450?text=Sin+imagen";
+              }}
+            />
 
-              <h2 className="h5">{noticia.title}</h2>
-              <p className="text-muted small mb-3">
+            {/* Cuerpo */}
+            <div className="card-body d-flex flex-column">
+              <h2 className="card-title h5 mb-1">{noticia.title}</h2>
+              <p className="card-subtitle text-body-secondary small mb-3">
                 {noticia.fecha_publicacion}
               </p>
 
-              <p className="flex-grow-1">{noticia.body}</p>
+              <p className="card-text flex-grow-1 noticia-body">
+                {noticia.body}
+              </p>
 
-              <div className="d-flex align-items-center justify-content-between mt-3 pt-3 border-top">
-                <button type="button" className="btn btn-link p-0">
+              {/* Acción */}
+              <div className="mt-3 pt-3 border-top">
+                {/* Si tienes una URL de detalle, úsala en href */}
+                <a
+                  href={"#"}
+                  className="btn btn-sm btn-outline-primary stretched-link"
+                  aria-label={`Leer más sobre ${noticia.title}`}
+                >
                   Leer más →
-                </button>
+                </a>
               </div>
             </div>
           </article>

@@ -2,8 +2,19 @@ import { Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import { useNavigate } from "react-router-dom";
+import { supabaseCliente } from "../backend/supabaseCliente";
+import { useAuth } from "../context/AuthContext";
 
 const NavbarComponent = () => {
+  const navigate = useNavigate();
+  const { user } = useAuth();
+
+  const handleLogout = async () => {
+    await supabaseCliente.auth.signOut();
+    navigate("/");
+  };
+
   return (
     <Navbar expand="lg" className="shadow bg-body-tertiary rounded">
       <Container fluid>
@@ -66,9 +77,16 @@ const NavbarComponent = () => {
             <Nav.Link as={Link} to="/sobre-nosotros">
               Sobre nosotros
             </Nav.Link>
-            <Nav.Link as={Link} to="/login">
-              Login
-            </Nav.Link>
+            {!user && (
+              <Nav.Link as={Link} to="/login">
+                Login
+              </Nav.Link>
+            )}
+            {user && (
+              <Nav.Link as={Link} to="/" onClick={handleLogout}>
+                Salir
+              </Nav.Link>
+            )}
           </div>
         </Navbar.Collapse>
       </Container>
