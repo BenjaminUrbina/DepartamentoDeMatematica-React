@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { supabaseCliente } from "../backend/supabaseCliente";
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
+
 
 import "../css/noticias.css";
 
