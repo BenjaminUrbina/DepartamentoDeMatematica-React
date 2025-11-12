@@ -9,7 +9,7 @@ import Layoutsmain from "./layouts/Layoutsmain.tsx";
 import Login from "./pages/Login.tsx";
 import { ProtectedRoute } from "./components/ProtectedRoute.tsx";
 import Editor from "./pages/Editor.tsx";
-import { AuthProvider } from "./context/AuthContext.tsx";
+import { AuthProvider } from "./hooks/AuthContext.tsx";
 
 function App() {
   return (

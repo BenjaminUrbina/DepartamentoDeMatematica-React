@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import { supabaseCliente } from "../backend/supabaseCliente";
 
-
 import "../css/noticias.css";
 
 export type Noticia = {
-  id_post: number;
+  id_publicacion: number;
   title: string;
   body: string;
   status: string;
@@ -35,7 +34,7 @@ export default function NoticiasFeed(props: NoticiasFeedProps) {
     const fetchNoticias = async () => {
       let query = supabaseCliente
         .from("posts")
-        .select("id_post,title,body,status,fecha_publicacion,url_img")
+        .select("id_publicacion,title,body,status,fecha_publicacion,url_img")
         .order("fecha_publicacion", { ascending: false });
 
       if (limit) {
@@ -73,7 +72,7 @@ export default function NoticiasFeed(props: NoticiasFeedProps) {
   return (
     <div className={`row g-4 ${className || ""}`.trim()}>
       {noticias.map((noticia) => (
-        <div key={noticia.id_post} className="col-12 col-md-6 col-lg-4">
+        <div key={noticia.id_publicacion} className="col-12 col-md-6 col-lg-4">
           <article className="card h-100 shadow-sm">
             {/* Imagen de la card */}
             <img

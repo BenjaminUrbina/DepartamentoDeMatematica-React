@@ -2,7 +2,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useState } from "react";
 import { supabaseCliente } from "../backend/supabaseCliente";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../hooks/AuthContext";
 import { useNavigate, Navigate } from "react-router-dom";
 import "../css/login.css";
 

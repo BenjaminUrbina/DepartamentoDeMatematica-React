@@ -4,7 +4,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { useNavigate } from "react-router-dom";
 import { supabaseCliente } from "../backend/supabaseCliente";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../hooks/AuthContext";
 
 const NavbarComponent = () => {
   const navigate = useNavigate();
