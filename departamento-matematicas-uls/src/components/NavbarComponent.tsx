@@ -83,9 +83,14 @@ const NavbarComponent = () => {
               </Nav.Link>
             )}
             {user && (
-              <Nav.Link as={Link} to="/" onClick={handleLogout}>
-                Salir
-              </Nav.Link>
+              <>
+                <Nav.Link as={Link} to="/editor">
+                  Editor Noticias
+                </Nav.Link>
+                <Nav.Link as={Link} to="/" onClick={handleLogout}>
+                  Salir
+                </Nav.Link>
+              </>
             )}
           </div>
         </Navbar.Collapse>

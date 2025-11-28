@@ -1,0 +1,24 @@
+/* Estilos para la página 404 */
+.not-found {
+  min-height: 89vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #0b1a2a;
+  color: #e6eef8;
+  text-align: center;
+  padding: 1.5rem;
+}
+
+.not-found__code {
+  font-size: 5rem;
+  margin: 0;
+  letter-spacing: 0.1em;
+}
+
+.not-found__message {
+  font-size: 1.25rem;
+  margin-top: 0.5rem;
+  opacity: 0.9;
+}

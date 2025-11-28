@@ -13,21 +13,25 @@ export default function Login() {
   const { user } = useAuth();
 
   if (user) {
+    console.log("Este es el usuario actual ", user);
     return <Navigate to="/" replace />;
   }
   /* funcion que se ejecuta cuando se envia el formulario */
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const resultado = await supabaseCliente.auth.signInWithPassword({
+      const { error } = await supabaseCliente.auth.signInWithPassword({
         email,
         password,
       });
-      console.log(resultado);
-      console.log("Inicio de sesión exitoso");
+      if (error) {
+        console.log("error al entrar en la sesion");
+        throw error;
+      }
+      console.log("Inicio sin problemas");
       navigate("/");
-    } catch (error) {
-      console.error(error);
+    } catch (e) {
+      console.error(e);
     }
   };
   return (

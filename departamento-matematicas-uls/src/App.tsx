@@ -10,6 +10,7 @@ import Login from "./pages/Login.tsx";
 import { ProtectedRoute } from "./components/ProtectedRoute.tsx";
 import Editor from "./pages/Editor.tsx";
 import { AuthProvider } from "./hooks/AuthContext.tsx";
+import NotFoundPage from "./pages/404page";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="noticias" element={<Noticias />} />
           <Route path="publicaciones" element={<Publicaciones />} />
           <Route path="login" element={<Login />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Route>
         <Route
           path="/editor"
@@ -32,7 +34,8 @@ function App() {
               <Editor />
             </ProtectedRoute>
           }
-        ></Route>
+        />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </AuthProvider>
   );

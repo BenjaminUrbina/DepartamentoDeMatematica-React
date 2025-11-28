@@ -54,7 +54,7 @@ export default function Home() {
           </div>
           <hr />
 
-          <NoticiasFeed />
+          <NoticiasFeed limit={3} tipo="noticia" />
         </div>
       </section>
 
@@ -62,12 +62,7 @@ export default function Home() {
         <div className="container">
           <h2 className="section-title mb-3">Próximos eventos</h2>
           <hr />
-          <div className="p-4 border rounded-3 text-center">
-            <p className="mb-1">No hay eventos publicados por ahora.</p>
-            <small className="text-muted">
-              ¿Organizas uno? Escríbenos para difundirlo.
-            </small>
-          </div>
+          <NoticiasFeed limit={3} tipo="evento" />
         </div>
       </section>
     </>

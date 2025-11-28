@@ -12,11 +12,13 @@ import ImageUploader from "../components/ImageUploader";
 import { supabaseCliente } from "../backend/supabaseCliente";
 import "../css/editor.css";
 import { useNavigate } from "react-router-dom";
+import NavbarComponent from "../components/NavbarComponent";
 
 interface NoticiaDatos {
   titulo: string;
   contenido: string;
   imageUrl: string;
+  tipo_publicacion: "noticia" | "evento" | "publicacion";
 }
 
 export default function Editor() {
@@ -25,6 +27,7 @@ export default function Editor() {
     titulo: "",
     contenido: "",
     imageUrl: "",
+    tipo_publicacion: "noticia",
   });
 
   const [loading, setLoading] = useState(false);
@@ -35,7 +38,9 @@ export default function Editor() {
   const [preview, setPreview] = useState(false);
 
   const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -126,7 +131,7 @@ export default function Editor() {
             id_user: user.id,
             fecha_publicacion: new Date().toISOString(),
             status: "publicado",
-            tipo_publicacion: "noticia",
+            tipo_publicacion: formData.tipo_publicacion,
           },
         ])
         .select();
@@ -137,7 +142,7 @@ export default function Editor() {
 
       setMessage({
         type: "success",
-        text: "¡Noticia creada exitosamente!",
+        text: "¡Publicación creada exitosamente!",
       });
 
       // Limpiar el formulario
@@ -145,6 +150,7 @@ export default function Editor() {
         titulo: "",
         contenido: "",
         imageUrl: "",
+        tipo_publicacion: "noticia",
       });
 
       // Esperar 2 segundos y redirigir
@@ -164,159 +170,187 @@ export default function Editor() {
   };
 
   return (
-    <Container className="editor-container py-5">
-      <Row className="justify-content-center">
-        <Col lg={8}>
-          <div className="editor-header mb-4">
-            <h1>Crear Nueva Noticia</h1>
-            <p className="text-muted">
-              Completa el formulario para crear y publicar una nueva noticia
-            </p>
-          </div>
+    <>
+      <NavbarComponent />
+      <Container fluid className="editor-container py-5">
+        <Row className="justify-content-center">
+          <Col lg={8}>
+            <div className="editor-header mb-4">
+              <h1>Crear Nueva Publicación</h1>
+              <p className="text-muted">
+                Completa el formulario para crear y publicar una nueva noticia,
+                evento o publicación
+              </p>
+            </div>
 
-          {message && (
-            <Alert
-              variant={message.type === "success" ? "success" : "danger"}
-              onClose={() => setMessage(null)}
-              dismissible
-              className="mb-4"
-            >
-              {message.text}
-            </Alert>
-          )}
+            {message && (
+              <Alert
+                variant={message.type === "success" ? "success" : "danger"}
+                onClose={() => setMessage(null)}
+                dismissible
+                className="mb-4"
+              >
+                {message.text}
+              </Alert>
+            )}
 
-          <Form onSubmit={handleSubmit} className="editor-form">
-            {/* Título */}
-            <Form.Group className="mb-4">
-              <Form.Label className="form-label-custom">Título *</Form.Label>
-              <Form.Control
-                type="text"
-                name="titulo"
-                value={formData.titulo}
-                onChange={handleInputChange}
-                placeholder="Ingresa el título de la noticia"
-                className="form-control-custom"
-                disabled={loading}
-                maxLength={150}
-              />
-              <Form.Text className="text-muted">
-                {formData.titulo.length}/150 caracteres
-              </Form.Text>
-            </Form.Group>
-
-            {/* Imagen */}
-            <Form.Group className="mb-4">
-              <Form.Label className="form-label-custom">
-                Imagen Principal *
-              </Form.Label>
-              {!formData.imageUrl ? (
-                <ImageUploader
-                  onImageUploaded={handleImageUploaded}
-                  onError={handleImageError}
+            <Form onSubmit={handleSubmit} className="editor-form">
+              {/* Título */}
+              <Form.Group className="mb-4">
+                <Form.Label className="form-label-custom">Título *</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="titulo"
+                  value={formData.titulo}
+                  onChange={handleInputChange}
+                  placeholder="Ingresa el título de la noticia"
+                  className="form-control-custom"
+                  disabled={loading}
+                  maxLength={150}
                 />
-              ) : (
-                <div className="selected-image-section">
-                  <img
-                    src={formData.imageUrl}
-                    alt="Seleccionada"
-                    className="selected-image"
+                <Form.Text className="text-muted">
+                  {formData.titulo.length}/150 caracteres
+                </Form.Text>
+              </Form.Group>
+
+              {/* Tipo de publicación */}
+              <Form.Group className="mb-4">
+                <Form.Label className="form-label-custom">
+                  Tipo de publicación *
+                </Form.Label>
+                <Form.Select
+                  name="tipo_publicacion"
+                  value={formData.tipo_publicacion}
+                  onChange={handleInputChange}
+                  className="form-control-custom"
+                  disabled={loading}
+                >
+                  <option value="noticia">Noticia</option>
+                  <option value="evento">Evento</option>
+                  <option value="publicacion">Publicación</option>
+                </Form.Select>
+              </Form.Group>
+
+              {/* Imagen */}
+              <Form.Group className="mb-4">
+                <Form.Label className="form-label-custom">
+                  Imagen Principal *
+                </Form.Label>
+                {!formData.imageUrl ? (
+                  <ImageUploader
+                    onImageUploaded={handleImageUploaded}
+                    onError={handleImageError}
                   />
-                  <div className="selected-image-actions">
-                    <Button
-                      variant="outline-danger"
-                      size="sm"
-                      onClick={handleRemoveImage}
-                      disabled={loading}
-                    >
-                      Cambiar Imagen
-                    </Button>
+                ) : (
+                  <div className="selected-image-section">
+                    <img
+                      src={formData.imageUrl}
+                      alt="Seleccionada"
+                      className="selected-image"
+                    />
+                    <div className="selected-image-actions">
+                      <Button
+                        variant="outline-danger"
+                        size="sm"
+                        onClick={handleRemoveImage}
+                        disabled={loading}
+                      >
+                        Cambiar Imagen
+                      </Button>
+                    </div>
+                  </div>
+                )}
+              </Form.Group>
+
+              {/* Contenido */}
+              <Form.Group className="mb-4">
+                <Form.Label className="form-label-custom">
+                  Contenido *
+                </Form.Label>
+                <Form.Control
+                  as="textarea"
+                  name="contenido"
+                  value={formData.contenido}
+                  onChange={handleInputChange}
+                  placeholder="Escribe el contenido de la noticia aquí..."
+                  rows={10}
+                  className="form-control-custom"
+                  disabled={loading}
+                  maxLength={5000}
+                />
+                <Form.Text className="text-muted">
+                  {formData.contenido.length}/5000 caracteres
+                </Form.Text>
+                
+              </Form.Group>
+
+              {/* Botones de acción */}
+              <div className="editor-actions">
+                <Button
+                  variant="primary"
+                  size="lg"
+                  type="submit"
+                  disabled={loading}
+                  className="action-button"
+                >
+                  {loading ? (
+                    <>
+                      <Spinner
+                        animation="border"
+                        size="sm"
+                        className="me-2"
+                        role="status"
+                      />
+                      Publicando...
+                    </>
+                  ) : (
+                    <>
+                      <span className="me-2">📤</span>
+                      Publicar
+                    </>
+                  )}
+                </Button>
+
+                <Button
+                  variant="outline-secondary"
+                  size="lg"
+                  onClick={() => setPreview(!preview)}
+                  disabled={loading}
+                  className="action-button"
+                >
+                  <span className="me-2">{preview ? "✏️" : "👁️"}</span>
+                  {preview ? "Editar" : "Vista Previa"}
+                </Button>
+              </div>
+            </Form>
+
+            {/* Vista Previa */}
+            {preview && (
+              <div className="preview-section mt-5">
+                <h2>Vista Previa de la Publicación</h2>
+                <div className="preview-content">
+                  <p className="mb-2 text-muted text-uppercase small">
+                    {formData.tipo_publicacion}
+                  </p>
+                  {formData.imageUrl && (
+                    <img
+                      src={formData.imageUrl}
+                      alt="Preview"
+                      className="preview-main-image"
+                    />
+                  )}
+                  <h3 className="mt-4">{formData.titulo || "Título..."}</h3>
+                  <div className="preview-text">
+                    {formData.contenido.split("\n").map((line, idx) => (
+                      <p key={idx}>{line || <br />}</p>
+                    ))}
                   </div>
                 </div>
-              )}
-            </Form.Group>
-
-            {/* Contenido */}
-            <Form.Group className="mb-4">
-              <Form.Label className="form-label-custom">Contenido *</Form.Label>
-              <Form.Control
-                as="textarea"
-                name="contenido"
-                value={formData.contenido}
-                onChange={handleInputChange}
-                placeholder="Escribe el contenido de la noticia aquí..."
-                rows={10}
-                className="form-control-custom"
-                disabled={loading}
-                maxLength={5000}
-              />
-              <Form.Text className="text-muted">
-                {formData.contenido.length}/5000 caracteres
-              </Form.Text>
-            </Form.Group>
-
-            {/* Botones de acción */}
-            <div className="editor-actions">
-              <Button
-                variant="primary"
-                size="lg"
-                type="submit"
-                disabled={loading}
-                className="action-button"
-              >
-                {loading ? (
-                  <>
-                    <Spinner
-                      animation="border"
-                      size="sm"
-                      className="me-2"
-                      role="status"
-                    />
-                    Publicando...
-                  </>
-                ) : (
-                  <>
-                    <span className="me-2">📤</span>
-                    Publicar Noticia
-                  </>
-                )}
-              </Button>
-
-              <Button
-                variant="outline-secondary"
-                size="lg"
-                onClick={() => setPreview(!preview)}
-                disabled={loading}
-                className="action-button"
-              >
-                <span className="me-2">{preview ? "✏️" : "👁️"}</span>
-                {preview ? "Editar" : "Vista Previa"}
-              </Button>
-            </div>
-          </Form>
-
-          {/* Vista Previa */}
-          {preview && (
-            <div className="preview-section mt-5">
-              <h2>Vista Previa de la Noticia</h2>
-              <div className="preview-content">
-                {formData.imageUrl && (
-                  <img
-                    src={formData.imageUrl}
-                    alt="Preview"
-                    className="preview-main-image"
-                  />
-                )}
-                <h3 className="mt-4">{formData.titulo || "Título..."}</h3>
-                <div className="preview-text">
-                  {formData.contenido.split("\n").map((line, idx) => (
-                    <p key={idx}>{line || <br />}</p>
-                  ))}
-                </div>
               </div>
-            </div>
-          )}
-        </Col>
-      </Row>
-    </Container>
+            )}
+          </Col>
+        </Row>
+      </Container>
+    </>
   );
 }

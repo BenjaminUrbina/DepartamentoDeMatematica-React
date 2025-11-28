@@ -9,6 +9,7 @@ export type Noticia = {
   body: string;
   status: string;
   fecha_publicacion: string;
+  tipo_publicacion: string;
   url_img: string;
 };
 
@@ -16,16 +17,11 @@ interface NoticiasFeedProps {
   limit?: number;
   emptyMessage?: string;
   className?: string;
+  tipo?: Noticia["tipo_publicacion"];
 }
 
-const DEFAULT_EMPTY_MESSAGE = "No hay noticias disponibles por ahora.";
-
 export default function NoticiasFeed(props: NoticiasFeedProps) {
-  const {
-    limit = 6,
-    emptyMessage = DEFAULT_EMPTY_MESSAGE,
-    className = "",
-  } = props;
+  const { limit = 6, className = "", tipo } = props;
   const [noticias, setNoticias] = useState<Noticia[]>([]);
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -34,8 +30,14 @@ export default function NoticiasFeed(props: NoticiasFeedProps) {
     const fetchNoticias = async () => {
       let query = supabaseCliente
         .from("posts")
-        .select("id_publicacion,title,body,status,fecha_publicacion,url_img")
+        .select(
+          "id_publicacion,title,body,status,fecha_publicacion,url_img,tipo_publicacion"
+        )
         .order("fecha_publicacion", { ascending: false });
+
+      if (tipo) {
+        query = query.eq("tipo_publicacion", tipo);
+      }
 
       if (limit) {
         /* Esto simplemente limita la cantidad de noticias recibidas */
@@ -55,7 +57,7 @@ export default function NoticiasFeed(props: NoticiasFeedProps) {
     };
 
     fetchNoticias();
-  }, [limit]);
+  }, [limit, tipo]);
 
   if (cargando) return <p className="cargando-noticias">Cargando…</p>;
 
@@ -66,7 +68,16 @@ export default function NoticiasFeed(props: NoticiasFeedProps) {
   }
 
   if (!noticias.length) {
-    return <p className="cargando-noticias">{emptyMessage}</p>;
+    return (
+      <>
+        <div className="p-4 border rounded-3 text-center">
+          <p className="mb-1">No hay ninguna {tipo} publicada por ahora.</p>
+          <small className="text-secondary">
+            Estamos trabajando en esto...
+          </small>
+        </div>
+      </>
+    );
   }
 
   return (
