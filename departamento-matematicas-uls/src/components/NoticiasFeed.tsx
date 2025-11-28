@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { supabaseCliente } from "../backend/supabaseCliente";
 
 import "../css/noticias.css";
 
 export type Noticia = {
-  id_publicacion: number;
+  id_publicacion: string;
   title: string;
   body: string;
   status: string;
@@ -109,14 +110,13 @@ export default function NoticiasFeed(props: NoticiasFeedProps) {
 
               {/* Acción */}
               <div className="mt-3 pt-3 border-top">
-                {/* Si tienes una URL de detalle, úsala en href */}
-                <a
-                  href={"#"}
+                <Link
+                  to={`/noticias/${noticia.id_publicacion}`}
                   className="btn btn-sm btn-outline-primary stretched-link"
                   aria-label={`Leer más sobre ${noticia.title}`}
                 >
                   Leer más →
-                </a>
+                </Link>
               </div>
             </div>
           </article>

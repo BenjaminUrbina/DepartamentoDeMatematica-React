@@ -11,6 +11,7 @@ import { ProtectedRoute } from "./components/ProtectedRoute.tsx";
 import Editor from "./pages/Editor.tsx";
 import { AuthProvider } from "./hooks/AuthContext.tsx";
 import NotFoundPage from "./pages/404page";
+import NoticiaDetalle from "./pages/NoticiaDetalle";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="contacto" element={<Contacto />} />
           <Route path="docentes" element={<Docentes />} />
           <Route path="noticias" element={<Noticias />} />
+          <Route path="noticias/:id" element={<NoticiaDetalle />} />
           <Route path="publicaciones" element={<Publicaciones />} />
           <Route path="login" element={<Login />} />
           <Route path="*" element={<NotFoundPage />} />
