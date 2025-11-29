@@ -1,4 +1,4 @@
-import { Container, Button } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { useState } from "react";
 import NoticiasFeed from "../components/NoticiasFeed";
 type Props = {};
